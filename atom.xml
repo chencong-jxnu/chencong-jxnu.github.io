@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chencong-jxnu.coding.me/</id>
     <title>Gridea</title>
-    <updated>2019-12-30T08:22:29.859Z</updated>
+    <updated>2019-12-30T08:29:51.504Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chencong-jxnu.coding.me/"/>
     <link rel="self" href="https://chencong-jxnu.coding.me/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://chencong-jxnu.coding.me/images/avatar.png</logo>
     <icon>https://chencong-jxnu.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Jupyter Notebook使用多个虚拟环境的 kernel]]></title>
+        <id>https://chencong-jxnu.coding.me/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel</id>
+        <link href="https://chencong-jxnu.coding.me/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel">
+        </link>
+        <updated>2019-12-30T08:22:37.000Z</updated>
+        <content type="html"><![CDATA[<p>1、anaconda创建虚拟环境——env</p>
+<p>2、anaconda根环境下安装jupytrt，默认是安装好的</p>
+<p>3、在虚拟环境中安装 ipykernel<br>
+切换到虚拟环境中执行： pip install ipykernel</p>
+<p>4、注册虚拟环境<br>
+在虚拟环境中执行注册： python -m ipykernel install --user --name=env</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[常用pip源]]></title>
         <id>https://chencong-jxnu.coding.me/post/chang-yong-pip-yuan</id>
