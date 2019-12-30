@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chencong-jxnu.coding.me/</id>
     <title>Gridea</title>
-    <updated>2019-12-30T08:03:32.193Z</updated>
+    <updated>2019-12-30T08:19:23.061Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chencong-jxnu.coding.me/"/>
     <link rel="self" href="https://chencong-jxnu.coding.me/atom.xml"/>
@@ -10,6 +10,22 @@
     <logo>https://chencong-jxnu.coding.me/images/avatar.png</logo>
     <icon>https://chencong-jxnu.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[常用pip源]]></title>
+        <id>https://chencong-jxnu.coding.me/post/chang-yong-pip-yuan</id>
+        <link href="https://chencong-jxnu.coding.me/post/chang-yong-pip-yuan">
+        </link>
+        <updated>2019-12-30T08:14:48.000Z</updated>
+        <content type="html"><![CDATA[<p>清华：<br>
+https://pypi.tuna.tsinghua.edu.cn/simple</p>
+<p>阿里云：<br>
+http://mirrors.aliyun.com/pypi/simple/</p>
+<p>中国科技大学<br>
+https://pypi.mirrors.ustc.edu.cn/simple/</p>
+<p>豆瓣：<br>
+http://pypi.douban.com/simple/</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://chencong-jxnu.coding.me/post/hello-gridea</id>
