@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>关于 | Gridea</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://chencong-jxnu.coding.me//favicon.ico?v=1577690673320">
+<link rel="shortcut icon" href="https://chencong-jxnu.coding.me//favicon.ico?v=1577691291594">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -79,11 +79,37 @@
     
 
     
+      
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'ff5ebcc915c0f8e93581',
+    clientSecret: '0b051f3f0d38432bba7df2950ae454fbfcb655b4',
+    repo: '',
+    owner: 'chencong-jxnu',
+    admin: ['chencong-jxnu'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+      
+
+      
+    
 
     <footer class="footer">
   <div class="main">
     <a href="https://chencong-jxnu.coding.me/">
-      <img class="avatar" src="https://chencong-jxnu.coding.me//images/avatar.png?v=1577690673320" alt="Gridea">
+      <img class="avatar" src="https://chencong-jxnu.coding.me//images/avatar.png?v=1577691291594" alt="Gridea">
     </a>
     <div class="footer__social">
       
