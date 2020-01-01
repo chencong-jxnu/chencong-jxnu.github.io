@@ -2,22 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chencong-jxnu.coding.me/</id>
     <title>Gridea</title>
-    <updated>2019-12-30T13:30:01.159Z</updated>
+    <updated>2020-01-01T01:23:08.740Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chencong-jxnu.coding.me/"/>
     <link rel="self" href="https://chencong-jxnu.coding.me/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://chencong-jxnu.coding.me/images/avatar.png</logo>
     <icon>https://chencong-jxnu.coding.me/favicon.ico</icon>
-    <rights>All rights reserved 2019, Gridea</rights>
+    <rights>All rights reserved 2020, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[阅读记录]]></title>
         <id>https://chencong-jxnu.coding.me/post/yue-du-ji-lu</id>
         <link href="https://chencong-jxnu.coding.me/post/yue-du-ji-lu">
         </link>
         <updated>2019-12-30T13:10:05.000Z</updated>
-        <content type="html"><![CDATA[<p>《偷影子的人》<br>
+        <content type="html"><![CDATA[<p><img src="https://tvax1.sinaimg.cn/large/006F8oSegy1gagsjwc9lxj30go0m8116.jpg" alt="20181219144651_1089" loading="lazy"><br>
+《偷影子的人》<br>
 为每一个你所偷来的影子找到点亮生命的小小光芒，为它们找回隐匿的记忆。</p>
+<p><img src="https://tvax2.sinaimg.cn/large/006F8oSegy1gagst9ftuej30u00u0tbj.jpg" alt="3541-ifaench3739994" loading="lazy"><br>
+《三毛传》<br>
+“感谢上天，今日活着的是我，痛着的也是我，如果叫荷西来忍受这一分钟又一分钟的长夜，那我是万万不肯的。幸好这些都没有轮到他，要是他像我这样地活下去，那么我拼了命也要跟上帝争了回来换他”——三毛</p>
 ]]></content>
     </entry>
     <entry>
