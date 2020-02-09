@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chencong-jxnu.coding.me/</id>
     <title>Chencong</title>
-    <updated>2020-02-09T08:43:43.644Z</updated>
+    <updated>2020-02-09T08:44:02.425Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chencong-jxnu.coding.me/"/>
     <link rel="self" href="https://chencong-jxnu.coding.me/atom.xml"/>
@@ -10,6 +10,26 @@
     <logo>https://chencong-jxnu.coding.me/images/avatar.png</logo>
     <icon>https://chencong-jxnu.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2020, Chencong</rights>
+    <entry>
+        <title type="html"><![CDATA[Google colab读取云硬盘文件]]></title>
+        <id>https://chencong-jxnu.coding.me/post/google-colab-du-qu-yun-ying-pan-wen-jian</id>
+        <link href="https://chencong-jxnu.coding.me/post/google-colab-du-qu-yun-ying-pan-wen-jian">
+        </link>
+        <updated>2020-02-09T08:16:09.000Z</updated>
+        <content type="html"><![CDATA[<p>想要读取云硬盘的文件，首先得获取google云硬盘的读取权限。<br>
+执行</p>
+<pre><code>from google.colab import drive
+drive.mount('connect_drive')
+</code></pre>
+<p>需要注意的是<code>drive.mount('connect_drive')</code>中，<code>connect_drive</code>可以自定义。运行上述代码，会弹出一条提示，并附有链接，点击链接登录自己的云硬盘的google账号，登录成功之后会返回一条很长的验证码，复制验证码，返回Google colab，将验证码输入到验证码输入框内，回车。成功之后会输出<code>Mounted at connect_drive</code>，里面的<code>connect_drive</code>就是之前自定义的。<br>
+做完以上的这些之后就可以访问google云盘里的文件了。</p>
+<pre><code>import os 
+path = 'connect_drive/My Drive'
+os.listdir(path)
+</code></pre>
+<p>所有的路径前面都要加上<code>connect_drive/My Drive</code>这个前缀，剩下的就像正常访问本地文件一样了。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[阅读记录]]></title>
         <id>https://chencong-jxnu.coding.me/post/yue-du-ji-lu</id>
