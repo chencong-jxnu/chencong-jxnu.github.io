@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://chencong.cc</id>
     <title>Chencong</title>
-    <updated>2020-05-22T03:59:52.024Z</updated>
+    <updated>2020-05-22T04:06:30.471Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://chencong.cc"/>
     <link rel="self" href="http://chencong.cc/atom.xml"/>
@@ -181,26 +181,6 @@ path = 'connect_drive/My Drive'
 os.listdir(path)
 </code></pre>
 <p>所有的路径前面都要加上<code>connect_drive/My Drive</code>这个前缀，剩下的就像正常访问本地文件一样了。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[阅读记录]]></title>
-        <id>http://chencong.cc/post/yue-du-ji-lu/</id>
-        <link href="http://chencong.cc/post/yue-du-ji-lu/">
-        </link>
-        <updated>2019-12-30T13:10:05.000Z</updated>
-        <content type="html"><![CDATA[<p><img src="https://tvax2.sinaimg.cn/large/006F8oSegy1gai1gb23nuj30qm0m8tit.jpg" alt="20181219144651_1089" loading="lazy"><br>
-《偷影子的人》<br>
-为每一个你所偷来的影子找到点亮生命的小小光芒，为它们找回隐匿的记忆。<br>
-<br/><br>
-<br/><br>
-<img src="https://tvax2.sinaimg.cn/large/006F8oSegy1gagst9ftuej30u00u0tbj.jpg" alt="3541-ifaench3739994" loading="lazy"><br>
-《三毛传》<br>
-一个人若爱另一个人，总能先于其他人看到他的闪光之处。<br>
-<br/><br>
-相思，像虫一样慢慢啃着我的身体，直到我成为一个空空茫茫的大洞。<br>
-<br/><br>
-“感谢上天，今日活着的是我，痛着的也是我，如果叫荷西来忍受这一分钟又一分钟的长夜，那我是万万不肯的。幸好这些都没有轮到他，要是他像我这样地活下去，那么我拼了命也要跟上帝争了回来换他”——三毛</p>
 ]]></content>
     </entry>
     <entry>
