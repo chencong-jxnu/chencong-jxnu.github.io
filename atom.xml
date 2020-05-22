@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chencong-jxnu.coding.me/</id>
     <title>Chencong</title>
-    <updated>2020-02-09T08:44:02.425Z</updated>
+    <updated>2020-05-22T03:21:41.202Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chencong-jxnu.coding.me/"/>
     <link rel="self" href="https://chencong-jxnu.coding.me/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, Chencong</rights>
     <entry>
         <title type="html"><![CDATA[Google colab读取云硬盘文件]]></title>
-        <id>https://chencong-jxnu.coding.me/post/google-colab-du-qu-yun-ying-pan-wen-jian</id>
-        <link href="https://chencong-jxnu.coding.me/post/google-colab-du-qu-yun-ying-pan-wen-jian">
+        <id>https://chencong-jxnu.coding.me/post/google-colab-du-qu-yun-ying-pan-wen-jian/</id>
+        <link href="https://chencong-jxnu.coding.me/post/google-colab-du-qu-yun-ying-pan-wen-jian/">
         </link>
         <updated>2020-02-09T08:16:09.000Z</updated>
         <content type="html"><![CDATA[<p>想要读取云硬盘的文件，首先得获取google云硬盘的读取权限。<br>
@@ -32,8 +32,8 @@ os.listdir(path)
     </entry>
     <entry>
         <title type="html"><![CDATA[阅读记录]]></title>
-        <id>https://chencong-jxnu.coding.me/post/yue-du-ji-lu</id>
-        <link href="https://chencong-jxnu.coding.me/post/yue-du-ji-lu">
+        <id>https://chencong-jxnu.coding.me/post/yue-du-ji-lu/</id>
+        <link href="https://chencong-jxnu.coding.me/post/yue-du-ji-lu/">
         </link>
         <updated>2019-12-30T13:10:05.000Z</updated>
         <content type="html"><![CDATA[<p><img src="https://tvax2.sinaimg.cn/large/006F8oSegy1gai1gb23nuj30qm0m8tit.jpg" alt="20181219144651_1089" loading="lazy"><br>
@@ -52,8 +52,8 @@ os.listdir(path)
     </entry>
     <entry>
         <title type="html"><![CDATA[Jupyter Notebook使用多个虚拟环境的 kernel]]></title>
-        <id>https://chencong-jxnu.coding.me/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel</id>
-        <link href="https://chencong-jxnu.coding.me/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel">
+        <id>https://chencong-jxnu.coding.me/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel/</id>
+        <link href="https://chencong-jxnu.coding.me/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel/">
         </link>
         <updated>2019-12-30T08:22:37.000Z</updated>
         <content type="html"><![CDATA[<p>1、anaconda创建虚拟环境——env</p>
@@ -66,8 +66,8 @@ os.listdir(path)
     </entry>
     <entry>
         <title type="html"><![CDATA[常用pip源]]></title>
-        <id>https://chencong-jxnu.coding.me/post/chang-yong-pip-yuan</id>
-        <link href="https://chencong-jxnu.coding.me/post/chang-yong-pip-yuan">
+        <id>https://chencong-jxnu.coding.me/post/chang-yong-pip-yuan/</id>
+        <link href="https://chencong-jxnu.coding.me/post/chang-yong-pip-yuan/">
         </link>
         <updated>2019-12-30T08:14:48.000Z</updated>
         <content type="html"><![CDATA[<p>临时更换pip源：<br>
@@ -85,8 +85,8 @@ http://pypi.douban.com/simple/</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://chencong-jxnu.coding.me/post/hello-gridea</id>
-        <link href="https://chencong-jxnu.coding.me/post/hello-gridea">
+        <id>https://chencong-jxnu.coding.me/post/hello-gridea/</id>
+        <link href="https://chencong-jxnu.coding.me/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
