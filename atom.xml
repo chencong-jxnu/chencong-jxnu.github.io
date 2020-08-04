@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://chencong.cc</id>
     <title>Chencong</title>
-    <updated>2020-05-22T04:06:30.471Z</updated>
+    <updated>2020-08-04T04:12:05.195Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://chencong.cc"/>
     <link rel="self" href="http://chencong.cc/atom.xml"/>
@@ -10,6 +10,40 @@
     <logo>http://chencong.cc/images/avatar.png</logo>
     <icon>http://chencong.cc/favicon.ico</icon>
     <rights>All rights reserved 2020, Chencong</rights>
+    <entry>
+        <title type="html"><![CDATA[青蛙跳台阶问题]]></title>
+        <id>http://chencong.cc/post/qing-wa-tiao-tai-jie-wen-ti/</id>
+        <link href="http://chencong.cc/post/qing-wa-tiao-tai-jie-wen-ti/">
+        </link>
+        <updated>2020-08-04T04:02:52.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</p>
+<h1 id="思路">思路</h1>
+<p>设<code>f(n)</code>表示青蛙跳上<code>n</code>阶的跳法，那么就有<code>f(0)=1</code>，<code>f(1)=1</code>，<code>f(2)=2</code>。如果青蛙要跳到第<code>3</code>阶，那么有两种方式：</p>
+<ul>
+<li>从第<code>2</code>阶跳<code>1</code>级上第<code>3</code>阶</li>
+<li>从第<code>1</code>阶跳<code>2</code>级上第<code>3</code>阶</li>
+</ul>
+<p>于是有<code>f(3)=f(2)+f(1)</code>，以此类推，青蛙跳到第<code>n</code>阶有两种方式：</p>
+<ul>
+<li>从第<code>n-1</code>阶跳<code>1</code>级上第<code>n</code>阶</li>
+<li>从第<code>n-2</code>阶跳<code>2</code>级上第<code>n</code>阶</li>
+</ul>
+<p>所以，我们可以得出：<code>f(n)=f(n-2)+f(n-1)</code>。于是这个问题的本质就类似于求斐波那契数列。</p>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution(object):
+    def __init__(self):
+        self.f_list = [1,1]
+    def numWays(self, n):
+        if len(self.f_list)&lt;n+1:
+            self.get_f_list(n)
+        return self.f_list[n]
+    def get_f_list(self,n):
+        for i in range(n+1-len(self.f_list)):
+            self.f_list.append(self.f_list[-1]+self.f_list[-2])
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ubuntu关闭和开启图形用户界面]]></title>
         <id>http://chencong.cc/post/ubuntu-guan-bi-he-kai-qi-tu-xing-yong-hu-jie-mian/</id>
