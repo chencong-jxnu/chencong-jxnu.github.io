@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Jupyter Notebook使用多个虚拟环境的 kernel | Chencong</title>
+<title>机器人运动范围问题 | Chencong</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="http://chencong.cc/favicon.ico?v=1596597980071">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <link rel="stylesheet" href="http://chencong.cc/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Jupyter Notebook使用多个虚拟环境的 kernel | Chencong - Atom Feed" href="http://chencong.cc/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="机器人运动范围问题 | Chencong - Atom Feed" href="http://chencong.cc/atom.xml">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
@@ -56,52 +56,67 @@
     </div>
     <article role="main" class="hentry has-cover">
       
-        <div class="entry-cover js-cover" data-src="https://tvax3.sinaimg.cn/large/006F8oSegy1gaf2ky5i9rj318g0m3di7.jpg" data-width="900" data-height="423" style="background-image:url(https://tvax3.sinaimg.cn/large/006F8oSegy1gaf2ky5i9rj318g0m3di7.jpg); height: 80vw;">
-          <h1 class="post-title">Jupyter Notebook使用多个虚拟环境的 kernel</h1>
+        <div class="entry-cover js-cover" data-src="https://tvax4.sinaimg.cn/large/006F8oSegy1ghenk595h9j30rs0iedhc.jpg" data-width="900" data-height="423" style="background-image:url(https://tvax4.sinaimg.cn/large/006F8oSegy1ghenk595h9j30rs0iedhc.jpg); height: 80vw;">
+          <h1 class="post-title">机器人运动范围问题</h1>
         </div>
       
-      <h1 class="entry-title" itemprop="headline">Jupyter Notebook使用多个虚拟环境的 kernel</h1>
+      <h1 class="entry-title" itemprop="headline">机器人运动范围问题</h1>
       <div class="entry-meta">
-        <time class="updated" datetime="2019-12-30 16:22:37">2019-12-30</time>
+        <time class="updated" datetime="2020-08-05 11:24:17">2020-08-05</time>
         <span class="author vcard">
-          1 min read
+          2 min read
         </span>
       </div>
       <div class="post-content yue">
-        <p>1、anaconda创建虚拟环境——env</p>
-<p>2、anaconda根环境下安装jupytrt，默认是安装好的</p>
-<p>3、在虚拟环境中安装 ipykernel<br>
-切换到虚拟环境中执行： pip install ipykernel</p>
-<p>4、注册虚拟环境<br>
-在虚拟环境中执行注册： python -m ipykernel install --user --name=env</p>
+        <h1 id="问题描述">问题描述</h1>
+<p>地上有一个m行n列的方格，从坐标 <code>[0,0]</code> 到坐标  <code>[m-1,n-1]</code> 。一个机器人从坐标 <code>[0, 0]</code> 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格  <code>[35, 37]</code> ，因为 <code>3+5+3+7=18</code>。但它不能进入方格  <code>[35, 38]</code>，因为 <code>3+5+3+8=19</code>。请问该机器人能够到达多少个格子？</p>
+<h1 id="解题思路">解题思路</h1>
+<figure data-type="image" tabindex="1"><img src="https://tvax1.sinaimg.cn/large/006F8oSegy1ghfrcfdfr0j30jp0jvgn8.jpg" alt="110705" loading="lazy"></figure>
+<p>从左上角<code>(0,0)</code>开始，采用广度优先搜索算法：</p>
+<ul>
+<li>判断当前点的右相邻格子能否到达，若能并且该格子不在队列则入队</li>
+<li>判断当前点的下相邻格子能否到达，若能并且该格子不在队列则入队</li>
+<li>出队，循环操作，直到队列为空</li>
+</ul>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution(object):
+    def movingCount(self, m, n, k):
+        &quot;&quot;&quot;
+        :type m: int
+        :type n: int
+        :type k: int
+        :rtype: int
+        &quot;&quot;&quot; 
+        def num_sum(num):
+            s = 0
+            while num:
+                s += num % 10
+                num = num//10
+            return s
+                
+        res = [(0,0)]
+        for i,j in res:
+            if i+1 &lt;= m-1 and num_sum(i+1)+num_sum(j) &lt;= k and (i+1,j) not in res:
+                res.append((i+1,j))
+            if j+1 &lt;= n-1 and num_sum(i)+num_sum(j+1) &lt;= k and (i,j+1) not in res:
+                res.append((i,j+1))
+        return len(res)
+</code></pre>
 
       </div>
       <div class="entry-block">
         <div class="entry-tags">
           
-            <a href="http://chencong.cc/tag/gVPxOEJAF/">
-              Jupyter
-            </a>
-          
         </div>
       </div>
     </article>
-    
-      <section class="post-section prev-post">
-        <div class="inner">
-          <h3>前一篇</h3>
-          <a href="http://chencong.cc/post/google-colab-du-qu-yun-ying-pan-wen-jian/">
-            <strong>Google colab读取云硬盘文件</strong>
-          </a>
-        </div>
-      </section>
     
     
       <section class="post-section prev-post">
         <div class="inner">
           <h3>后一篇</h3>
-          <a href="http://chencong.cc/post/chang-yong-pip-yuan/">
-            <strong>常用pip源</strong>
+          <a href="http://chencong.cc/post/qing-wa-tiao-tai-jie-wen-ti/">
+            <strong>青蛙跳台阶问题</strong>
           </a>
         </div>
       </section>

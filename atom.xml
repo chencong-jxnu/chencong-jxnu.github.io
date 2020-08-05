@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://chencong.cc</id>
     <title>Chencong</title>
-    <updated>2020-08-04T04:21:53.367Z</updated>
+    <updated>2020-08-05T03:26:23.431Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://chencong.cc"/>
     <link rel="self" href="http://chencong.cc/atom.xml"/>
@@ -10,6 +10,48 @@
     <logo>http://chencong.cc/images/avatar.png</logo>
     <icon>http://chencong.cc/favicon.ico</icon>
     <rights>All rights reserved 2020, Chencong</rights>
+    <entry>
+        <title type="html"><![CDATA[机器人运动范围问题]]></title>
+        <id>http://chencong.cc/post/ji-qi-ren-yun-dong-fan-wei-wen-ti/</id>
+        <link href="http://chencong.cc/post/ji-qi-ren-yun-dong-fan-wei-wen-ti/">
+        </link>
+        <updated>2020-08-05T03:24:17.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>地上有一个m行n列的方格，从坐标 <code>[0,0]</code> 到坐标  <code>[m-1,n-1]</code> 。一个机器人从坐标 <code>[0, 0]</code> 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格  <code>[35, 37]</code> ，因为 <code>3+5+3+7=18</code>。但它不能进入方格  <code>[35, 38]</code>，因为 <code>3+5+3+8=19</code>。请问该机器人能够到达多少个格子？</p>
+<h1 id="解题思路">解题思路</h1>
+<figure data-type="image" tabindex="1"><img src="https://tvax1.sinaimg.cn/large/006F8oSegy1ghfrcfdfr0j30jp0jvgn8.jpg" alt="110705" loading="lazy"></figure>
+<p>从左上角<code>(0,0)</code>开始，采用广度优先搜索算法：</p>
+<ul>
+<li>判断当前点的右相邻格子能否到达，若能并且该格子不在队列则入队</li>
+<li>判断当前点的下相邻格子能否到达，若能并且该格子不在队列则入队</li>
+<li>出队，循环操作，直到队列为空</li>
+</ul>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution(object):
+    def movingCount(self, m, n, k):
+        &quot;&quot;&quot;
+        :type m: int
+        :type n: int
+        :type k: int
+        :rtype: int
+        &quot;&quot;&quot; 
+        def num_sum(num):
+            s = 0
+            while num:
+                s += num % 10
+                num = num//10
+            return s
+                
+        res = [(0,0)]
+        for i,j in res:
+            if i+1 &lt;= m-1 and num_sum(i+1)+num_sum(j) &lt;= k and (i+1,j) not in res:
+                res.append((i+1,j))
+            if j+1 &lt;= n-1 and num_sum(i)+num_sum(j+1) &lt;= k and (i,j+1) not in res:
+                res.append((i,j+1))
+        return len(res)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[青蛙跳台阶问题]]></title>
         <id>http://chencong.cc/post/qing-wa-tiao-tai-jie-wen-ti/</id>
