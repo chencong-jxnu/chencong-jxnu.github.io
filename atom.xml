@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://chencong.cc</id>
     <title>Chencong</title>
-    <updated>2020-08-07T09:44:21.177Z</updated>
+    <updated>2020-08-08T03:43:17.874Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://chencong.cc"/>
     <link rel="self" href="http://chencong.cc/atom.xml"/>
@@ -10,6 +10,53 @@
     <logo>http://chencong.cc/images/avatar.png</logo>
     <icon>http://chencong.cc/favicon.ico</icon>
     <rights>All rights reserved 2020, Chencong</rights>
+    <entry>
+        <title type="html"><![CDATA[链表数字相加问题]]></title>
+        <id>http://chencong.cc/post/lian-biao-shu-zi-xiang-jia-wen-ti/</id>
+        <link href="http://chencong.cc/post/lian-biao-shu-zi-xiang-jia-wen-ti/">
+        </link>
+        <updated>2020-08-08T03:42:08.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p>Example:</p>
+<pre><code>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+Output: 7 -&gt; 0 -&gt; 8
+Explanation: 342 + 465 = 807.
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>使用递归实现，依次取出链表第一个节点相加求和。若其中一个链表为空，另一个链表不为空，则空链表用值为0的节点代替，直至两个链表都为空结束递归。</p>
+<h1 id="python实现">Python实现</h1>
+<pre><code># Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    
+    def __init__(self):
+    	# 保留进位信息
+        self.a = 0
+        
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode:
+
+        if l1 == None and l2 == None:
+            if self.a &gt; 0:
+                return ListNode(self.a)
+            else:
+                return None
+            
+        if l1 == None:
+            l1 = ListNode()
+        if l2 == None:
+            l2 = ListNode()
+
+        res = (l1.val+l2.val+self.a)%10
+        self.a = (l1.val+l2.val+self.a)//10
+        return ListNode(res,self.addTwoNumbers(l1.next,l2.next))   
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[机器人运动范围问题]]></title>
         <id>http://chencong.cc/post/ji-qi-ren-yun-dong-fan-wei-wen-ti/</id>
