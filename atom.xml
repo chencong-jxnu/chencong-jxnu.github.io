@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://chencong.cc</id>
     <title>Chencong</title>
-    <updated>2020-08-08T03:43:17.874Z</updated>
+    <updated>2020-08-15T15:54:38.649Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://chencong.cc"/>
     <link rel="self" href="http://chencong.cc/atom.xml"/>
@@ -10,6 +10,55 @@
     <logo>http://chencong.cc/images/avatar.png</logo>
     <icon>http://chencong.cc/favicon.ico</icon>
     <rights>All rights reserved 2020, Chencong</rights>
+    <entry>
+        <title type="html"><![CDATA[求字符串不重复子串的最大长度]]></title>
+        <id>http://chencong.cc/post/qiu-zi-fu-chuan-bu-chong-fu-zi-chuan-de-zui-da-chang-du/</id>
+        <link href="http://chencong.cc/post/qiu-zi-fu-chuan-bu-chong-fu-zi-chuan-de-zui-da-chang-du/">
+        </link>
+        <updated>2020-08-15T15:49:37.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>Given a string, find the length of the longest substring without repeating characters.<br>
+Example：</p>
+<pre><code>Input: &quot;abcabcbb&quot;
+Output: 3 
+Explanation: The answer is &quot;abc&quot;, with the length of 3.
+
+Input: &quot;pwwkew&quot;
+Output: 3
+Explanation: The answer is &quot;wke&quot;, with the length of 3.
+
+Input: &quot;bbbbb&quot;
+Output: 1
+Explanation: The answer is &quot;b&quot;, with the length of 1.
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>对字符串进行一次遍历，每遍历一个字符求一次最大字串长度。</p>
+<ul>
+<li>设置滑动窗口，定义窗口起始位置变量用于保存窗口起始位置，窗口结束位置即为当前遍历字符的位置。</li>
+<li>若当前遍历字符在窗口中，修改窗口起始变量</li>
+<li>若当前遍历字符串不在窗口中，根据窗口大小更新最大字串长度。</li>
+<li>字符串遍历结束，返回最大字串长度<br>
+<img src="https://tvax1.sinaimg.cn/large/006F8oSegy1ghrxa1iusoj30er08ot8t.jpg" alt="2020-08-15 233642" loading="lazy"></li>
+</ul>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def lengthOfLongestSubstring(self, s: str) -&gt; int:
+        # 保存最大字串长度
+        res = 0
+        # 保存窗口起始位置
+        start = 0
+        for idx,ch in enumerate(s):
+            # 判断当前字符是否在窗口内
+            if ch in s[start:idx]:
+                # 若当前字符在窗口内，更新起始位置
+                start = s[start:idx].index(ch) + start + 1
+            else:
+                # 若当前字符不在窗口内，更新最大字串长度
+                res = max(res,idx+1-start)
+        return res
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[链表数字相加问题]]></title>
         <id>http://chencong.cc/post/lian-biao-shu-zi-xiang-jia-wen-ti/</id>

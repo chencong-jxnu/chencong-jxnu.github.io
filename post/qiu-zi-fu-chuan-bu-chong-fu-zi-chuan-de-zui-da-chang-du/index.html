@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Chencong</title>
+<title>求字符串不重复子串的最大长度 | Chencong</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="http://chencong.cc/favicon.ico?v=1597506875133">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <link rel="stylesheet" href="http://chencong.cc/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Chencong - Atom Feed" href="http://chencong.cc/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="求字符串不重复子串的最大长度 | Chencong - Atom Feed" href="http://chencong.cc/atom.xml">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
@@ -18,7 +18,7 @@
 
   </head>
   <body>
-    <div class="site-nav no-cover">
+    <div class="site-nav has-cover">
       <div class="head">
   <div class="inner">
     <a class="site-name" href="http://chencong.cc">
@@ -54,19 +54,61 @@
   </div>
 </div>
     </div>
-    <article role="main" class="hentry ">
+    <article role="main" class="hentry has-cover">
       
-      <h1 class="entry-title" itemprop="headline">关于</h1>
+        <div class="entry-cover js-cover" data-src="https://tvax3.sinaimg.cn/large/006F8oSegy1ghidwweoggj31tp0wvmxs.jpg" data-width="900" data-height="423" style="background-image:url(https://tvax3.sinaimg.cn/large/006F8oSegy1ghidwweoggj31tp0wvmxs.jpg); height: 80vw;">
+          <h1 class="post-title">求字符串不重复子串的最大长度</h1>
+        </div>
+      
+      <h1 class="entry-title" itemprop="headline">求字符串不重复子串的最大长度</h1>
       <div class="entry-meta">
-        <time class="updated" datetime="2019-01-25 19:09:48">2019-01-25</time>
+        <time class="updated" datetime="2020-08-15 23:49:37">2020-08-15</time>
         <span class="author vcard">
-          1 min read
+          2 min read
         </span>
       </div>
       <div class="post-content yue">
-        <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
+        <h1 id="问题描述">问题描述</h1>
+<p>Given a string, find the length of the longest substring without repeating characters.<br>
+Example：</p>
+<pre><code>Input: &quot;abcabcbb&quot;
+Output: 3 
+Explanation: The answer is &quot;abc&quot;, with the length of 3.
+
+Input: &quot;pwwkew&quot;
+Output: 3
+Explanation: The answer is &quot;wke&quot;, with the length of 3.
+
+Input: &quot;bbbbb&quot;
+Output: 1
+Explanation: The answer is &quot;b&quot;, with the length of 1.
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>对字符串进行一次遍历，每遍历一个字符求一次最大字串长度。</p>
+<ul>
+<li>设置滑动窗口，定义窗口起始位置变量用于保存窗口起始位置，窗口结束位置即为当前遍历字符的位置。</li>
+<li>若当前遍历字符在窗口中，修改窗口起始变量</li>
+<li>若当前遍历字符串不在窗口中，根据窗口大小更新最大字串长度。</li>
+<li>字符串遍历结束，返回最大字串长度<br>
+<img src="https://tvax1.sinaimg.cn/large/006F8oSegy1ghrxa1iusoj30er08ot8t.jpg" alt="2020-08-15 233642" loading="lazy"></li>
+</ul>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def lengthOfLongestSubstring(self, s: str) -&gt; int:
+        # 保存最大字串长度
+        res = 0
+        # 保存窗口起始位置
+        start = 0
+        for idx,ch in enumerate(s):
+            # 判断当前字符是否在窗口内
+            if ch in s[start:idx]:
+                # 若当前字符在窗口内，更新起始位置
+                start = s[start:idx].index(ch) + start + 1
+            else:
+                # 若当前字符不在窗口内，更新最大字串长度
+                res = max(res,idx+1-start)
+        return res
+</code></pre>
 
       </div>
       <div class="entry-block">
@@ -76,6 +118,15 @@
       </div>
     </article>
     
+    
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>后一篇</h3>
+          <a href="http://chencong.cc/post/lian-biao-shu-zi-xiang-jia-wen-ti/">
+            <strong>链表数字相加问题</strong>
+          </a>
+        </div>
+      </section>
     
 
     
