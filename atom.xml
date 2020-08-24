@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://chencong.cc</id>
     <title>Chencong</title>
-    <updated>2020-08-16T17:12:34.254Z</updated>
+    <updated>2020-08-24T15:49:56.154Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://chencong.cc"/>
     <link rel="self" href="http://chencong.cc/atom.xml"/>
@@ -10,6 +10,50 @@
     <logo>http://chencong.cc/images/avatar.png</logo>
     <icon>http://chencong.cc/favicon.ico</icon>
     <rights>All rights reserved 2020, Chencong</rights>
+    <entry>
+        <title type="html"><![CDATA[ZigZag Conversion（Z型字符串转换）]]></title>
+        <id>http://chencong.cc/post/zigzag-conversionz-xing-zi-fu-chuan-zhuan-huan/</id>
+        <link href="http://chencong.cc/post/zigzag-conversionz-xing-zi-fu-chuan-zhuan-huan/">
+        </link>
+        <updated>2020-08-24T15:47:40.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>The string &quot;PAYPALISHIRING&quot; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+<pre><code>P     A     H     N         |     / |     / |
+A  P  L  S  I  I  G         |   /   |   /   |
+Y     I     R               | /     | /     |
+</code></pre>
+<p>Example 1:</p>
+<pre><code>Input: s = &quot;PAYPALISHIRING&quot;, numRows = 3
+Output: &quot;PAHNAPLSIIGYIR&quot;
+
+P     A     H     N         |     / |     / |
+A  P  L  S  I  I  G         |   /   |   /   |
+Y     I     R               | /     | /     |
+</code></pre>
+<p>Example 2:</p>
+<pre><code>Input: s = &quot;PAYPALISHIRING&quot;, numRows = 4
+Output: &quot;PINALSIGYAHRPI&quot;
+
+P       I       N        |      / |     / |
+A    L  S    I  G        |     /  |    /  |
+Y  A    H  R             |   /    |   /   |
+P       I                | /      | /     |
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>找规律，会发现下图所示的规律：<br>
+<img src="https://tva4.sinaimg.cn/large/006F8oSegy1gi2ba9bn51j30np0b40tq.jpg" alt="2020-08-24 231536" loading="lazy"><br>
+当<code>n=4</code>时，原始字符串每一个字符的编号总是<code>0,1,2,3,2,1</code>的循环，所以只需要遍历一遍原始字符串，给每一个字符标号就行了。</p>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def convert(self, s: str, numRows: int) -&gt; str:
+        res = [[] for i in range(numRows)]
+        idx = list(range(numRows))+list(range(numRows-2,0,-1))
+        for i,ch in enumerate(s):
+            res[idx[i%len(idx)]].append(ch)
+        return ''.join([''.join(i) for i in res])
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[将图片格式转成EPS格式]]></title>
         <id>http://chencong.cc/post/jiang-tu-pian-ge-shi-zhuan-cheng-eps-ge-shi/</id>
@@ -450,25 +494,6 @@ os.listdir(path)
 切换到虚拟环境中执行： pip install ipykernel</p>
 <p>4、注册虚拟环境<br>
 在虚拟环境中执行注册： python -m ipykernel install --user --name=env</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[常用pip源]]></title>
-        <id>http://chencong.cc/post/chang-yong-pip-yuan/</id>
-        <link href="http://chencong.cc/post/chang-yong-pip-yuan/">
-        </link>
-        <updated>2019-12-30T08:14:48.000Z</updated>
-        <content type="html"><![CDATA[<p>临时更换pip源：<br>
-pip install -i &lt;pip源&gt; &lt;包名&gt;<br>
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy</p>
-<p>清华：<br>
-https://pypi.tuna.tsinghua.edu.cn/simple</p>
-<p>阿里云：<br>
-http://mirrors.aliyun.com/pypi/simple/</p>
-<p>中国科技大学<br>
-https://pypi.mirrors.ustc.edu.cn/simple/</p>
-<p>豆瓣：<br>
-http://pypi.douban.com/simple/</p>
 ]]></content>
     </entry>
 </feed>
