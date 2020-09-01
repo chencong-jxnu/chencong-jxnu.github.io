@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://chencong.cc</id>
     <title>Chencong</title>
-    <updated>2020-08-24T16:03:28.656Z</updated>
+    <updated>2020-09-01T07:05:58.680Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://chencong.cc"/>
     <link rel="self" href="http://chencong.cc/atom.xml"/>
@@ -10,6 +10,47 @@
     <logo>http://chencong.cc/images/avatar.png</logo>
     <icon>http://chencong.cc/favicon.ico</icon>
     <rights>All rights reserved 2020, Chencong</rights>
+    <entry>
+        <title type="html"><![CDATA[括号生成问题]]></title>
+        <id>http://chencong.cc/post/gua-hao-sheng-cheng-wen-ti/</id>
+        <link href="http://chencong.cc/post/gua-hao-sheng-cheng-wen-ti/">
+        </link>
+        <updated>2020-09-01T07:03:44.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.<br>
+Example:</p>
+<pre><code>n = 3
+output: [&quot;((()))&quot;,  &quot;(()())&quot;,  &quot;(())()&quot;,  &quot;()(())&quot;,  &quot;()()()&quot;]
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>使用递归的思想，生成<code>n</code>对括号的有效组合，可以分解为一对括号<code>()</code>，与<code>n-1</code>对括号有效序列的组合。<br>
+例如：</p>
+<pre><code>n=1    output:['( )']
+n=2    output:['( ) ( )','( ( ) )']
+                    ( )   (     )
+                 ↑           ↑
+                ( )         ( )
+n=3    output:['( ) ( ) ( )','( ( ) ) ( )','( ) ( ( ) )','( ( ( ) ) )', '( ( ) ( ) )']
+                    ( ) ( )   (     ) ( )   ( ) (     )   ( (     ) )    ( ( )     )
+                 ↑               ↑                 ↑           ↑                ↑
+                ( )             ( )               ( )         ( )              ( )
+</code></pre>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def generateParenthesis(self, n):
+        if n == 1:
+            return ['()']
+        return self.combin('()',self.generateParenthesis(n-1))
+        
+    def combin(self, ch, tgt):
+        res = []
+        for s in tgt:
+            for i in range(len(s)+1):
+                res.append(s[:i]+ch+s[i:])
+        return list(set(res))
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ZigZag Conversion（Z型字符串转换）]]></title>
         <id>http://chencong.cc/post/zigzag-conversionz-xing-zi-fu-chuan-zhuan-huan/</id>
@@ -480,20 +521,6 @@ path = 'connect_drive/My Drive'
 os.listdir(path)
 </code></pre>
 <p>所有的路径前面都要加上<code>connect_drive/My Drive</code>这个前缀，剩下的就像正常访问本地文件一样了。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Jupyter Notebook使用多个虚拟环境的 kernel]]></title>
-        <id>http://chencong.cc/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel/</id>
-        <link href="http://chencong.cc/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel/">
-        </link>
-        <updated>2019-12-30T08:22:37.000Z</updated>
-        <content type="html"><![CDATA[<p>1、anaconda创建虚拟环境——env</p>
-<p>2、anaconda根环境下安装jupytrt，默认是安装好的</p>
-<p>3、在虚拟环境中安装 ipykernel<br>
-切换到虚拟环境中执行： pip install ipykernel</p>
-<p>4、注册虚拟环境<br>
-在虚拟环境中执行注册： python -m ipykernel install --user --name=env</p>
 ]]></content>
     </entry>
 </feed>

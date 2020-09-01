@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Google colab读取云硬盘文件 | Chencong</title>
+<title>括号生成问题 | Chencong</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="http://chencong.cc/favicon.ico?v=1598943901966">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <link rel="stylesheet" href="http://chencong.cc/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Google colab读取云硬盘文件 | Chencong - Atom Feed" href="http://chencong.cc/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="括号生成问题 | Chencong - Atom Feed" href="http://chencong.cc/atom.xml">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
@@ -56,58 +56,70 @@
     </div>
     <article role="main" class="hentry has-cover">
       
-        <div class="entry-cover js-cover" data-src="https://tva3.sinaimg.cn/large/006F8oSegy1ghidwo52ucj31tp0wvweq.jpg" data-width="900" data-height="423" style="background-image:url(https://tva3.sinaimg.cn/large/006F8oSegy1ghidwo52ucj31tp0wvweq.jpg); height: 80vw;">
-          <h1 class="post-title">Google colab读取云硬盘文件</h1>
+        <div class="entry-cover js-cover" data-src="https://tvax3.sinaimg.cn/large/006F8oSegy1ghidwweoggj31tp0wvmxs.jpg" data-width="900" data-height="423" style="background-image:url(https://tvax3.sinaimg.cn/large/006F8oSegy1ghidwweoggj31tp0wvmxs.jpg); height: 80vw;">
+          <h1 class="post-title">括号生成问题</h1>
         </div>
       
-      <h1 class="entry-title" itemprop="headline">Google colab读取云硬盘文件</h1>
+      <h1 class="entry-title" itemprop="headline">括号生成问题</h1>
       <div class="entry-meta">
-        <time class="updated" datetime="2020-02-09 16:16:09">2020-02-09</time>
+        <time class="updated" datetime="2020-09-01 15:03:44">2020-09-01</time>
         <span class="author vcard">
           1 min read
         </span>
       </div>
       <div class="post-content yue">
-        <p>想要读取云硬盘的文件，首先得获取google云硬盘的读取权限。<br>
-执行</p>
-<pre><code>from google.colab import drive
-drive.mount('connect_drive')
+        <h1 id="问题描述">问题描述</h1>
+<p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.<br>
+Example:</p>
+<pre><code>n = 3
+output: [&quot;((()))&quot;,  &quot;(()())&quot;,  &quot;(())()&quot;,  &quot;()(())&quot;,  &quot;()()()&quot;]
 </code></pre>
-<p>需要注意的是<code>drive.mount('connect_drive')</code>中，<code>connect_drive</code>可以自定义。运行上述代码，会弹出一条提示，并附有链接，点击链接登录自己的云硬盘的google账号，登录成功之后会返回一条很长的验证码，复制验证码，返回Google colab，将验证码输入到验证码输入框内，回车。成功之后会输出<code>Mounted at connect_drive</code>，里面的<code>connect_drive</code>就是之前自定义的。<br>
-做完以上的这些之后就可以访问google云盘里的文件了。</p>
-<pre><code>import os 
-path = 'connect_drive/My Drive'
-os.listdir(path)
+<h1 id="解题思路">解题思路</h1>
+<p>使用递归的思想，生成<code>n</code>对括号的有效组合，可以分解为一对括号<code>()</code>，与<code>n-1</code>对括号有效序列的组合。<br>
+例如：</p>
+<pre><code>n=1    output:['( )']
+n=2    output:['( ) ( )','( ( ) )']
+                    ( )   (     )
+                 ↑           ↑
+                ( )         ( )
+n=3    output:['( ) ( ) ( )','( ( ) ) ( )','( ) ( ( ) )','( ( ( ) ) )', '( ( ) ( ) )']
+                    ( ) ( )   (     ) ( )   ( ) (     )   ( (     ) )    ( ( )     )
+                 ↑               ↑                 ↑           ↑                ↑
+                ( )             ( )               ( )         ( )              ( )
 </code></pre>
-<p>所有的路径前面都要加上<code>connect_drive/My Drive</code>这个前缀，剩下的就像正常访问本地文件一样了。</p>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def generateParenthesis(self, n):
+        if n == 1:
+            return ['()']
+        return self.combin('()',self.generateParenthesis(n-1))
+        
+    def combin(self, ch, tgt):
+        res = []
+        for s in tgt:
+            for i in range(len(s)+1):
+                res.append(s[:i]+ch+s[i:])
+        return list(set(res))
+</code></pre>
 
       </div>
       <div class="entry-block">
         <div class="entry-tags">
           
-            <a href="http://chencong.cc/tag/rPFdWmT99/">
-              Google Colab
+            <a href="http://chencong.cc/tag/caUKr4og7/">
+              LeetCode
             </a>
           
         </div>
       </div>
     </article>
     
-      <section class="post-section prev-post">
-        <div class="inner">
-          <h3>前一篇</h3>
-          <a href="http://chencong.cc/post/python-zhong-sacremoses-bao-de-shi-yong/">
-            <strong>Python中sacremoses包的使用</strong>
-          </a>
-        </div>
-      </section>
-    
     
       <section class="post-section prev-post">
         <div class="inner">
           <h3>后一篇</h3>
-          <a href="http://chencong.cc/post/jupyter-notebook-shi-yong-duo-ge-xu-ni-huan-jing-de-kernel/">
-            <strong>Jupyter Notebook使用多个虚拟环境的 kernel</strong>
+          <a href="http://chencong.cc/post/zigzag-conversionz-xing-zi-fu-chuan-zhuan-huan/">
+            <strong>ZigZag Conversion（Z型字符串转换）</strong>
           </a>
         </div>
       </section>
