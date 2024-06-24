@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://chencong.cc</id>
+    <title>Chencong</title>
+    <updated>2024-06-24T08:07:19.253Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="http://chencong.cc"/>
+    <link rel="self" href="http://chencong.cc/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>http://chencong.cc/images/avatar.png</logo>
+    <icon>http://chencong.cc/favicon.ico</icon>
+    <rights>All rights reserved 2024, Chencong</rights>
+    <entry>
+        <title type="html"><![CDATA[悄无声息]]></title>
+        <id>http://chencong.cc/post/qiao-wu-sheng-xi/</id>
+        <link href="http://chencong.cc/post/qiao-wu-sheng-xi/">
+        </link>
+        <updated>2021-12-29T07:37:55.000Z</updated>
+        <content type="html"><![CDATA[<p>笔触无痕，死神降临；<br>
+两眼无望，静噬苍苍；<br>
+下等尘尘，一介莽夫；<br>
+昧昧混世，道人自诩；<br>
+自乾坤起便风生水起。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[括号生成问题]]></title>
+        <id>http://chencong.cc/post/gua-hao-sheng-cheng-wen-ti/</id>
+        <link href="http://chencong.cc/post/gua-hao-sheng-cheng-wen-ti/">
+        </link>
+        <updated>2020-09-01T07:03:44.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.<br>
+Example:</p>
+<pre><code>n = 3
+output: [&quot;((()))&quot;,  &quot;(()())&quot;,  &quot;(())()&quot;,  &quot;()(())&quot;,  &quot;()()()&quot;]
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>使用递归的思想，生成<code>n</code>对括号的有效组合，可以分解为一对括号<code>()</code>，与<code>n-1</code>对括号有效序列的组合。<br>
+例如：</p>
+<pre><code>n=1    output:['( )']
+n=2    output:['( ) ( )','( ( ) )']
+                    ( )   (     )
+                 ↑           ↑
+                ( )         ( )
+n=3    output:['( ) ( ) ( )','( ( ) ) ( )','( ) ( ( ) )','( ( ( ) ) )', '( ( ) ( ) )']
+                    ( ) ( )   (     ) ( )   ( ) (     )   ( (     ) )    ( ( )     )
+                 ↑               ↑                 ↑           ↑                ↑
+                ( )             ( )               ( )         ( )              ( )
+</code></pre>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def generateParenthesis(self, n):
+        if n == 1:
+            return ['()']
+        return self.combin('()',self.generateParenthesis(n-1))
+        
+    def combin(self, ch, tgt):
+        res = []
+        for s in tgt:
+            for i in range(len(s)+1):
+                res.append(s[:i]+ch+s[i:])
+        return list(set(res))
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ZigZag Conversion（Z型字符串转换）]]></title>
+        <id>http://chencong.cc/post/zigzag-conversionz-xing-zi-fu-chuan-zhuan-huan/</id>
+        <link href="http://chencong.cc/post/zigzag-conversionz-xing-zi-fu-chuan-zhuan-huan/">
+        </link>
+        <updated>2020-08-24T15:47:40.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>The string &quot;PAYPALISHIRING&quot; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+<pre><code>P     A     H     N         |     / |     / |
+A  P  L  S  I  I  G         |   /   |   /   |
+Y     I     R               | /     | /     |
+</code></pre>
+<p>Example 1:</p>
+<pre><code>Input: s = &quot;PAYPALISHIRING&quot;, numRows = 3
+Output: &quot;PAHNAPLSIIGYIR&quot;
+
+P     A     H     N         |     / |     / |
+A  P  L  S  I  I  G         |   /   |   /   |
+Y     I     R               | /     | /     |
+</code></pre>
+<p>Example 2:</p>
+<pre><code>Input: s = &quot;PAYPALISHIRING&quot;, numRows = 4
+Output: &quot;PINALSIGYAHRPI&quot;
+
+P       I       N        |      / |     / |
+A    L  S    I  G        |     /  |    /  |
+Y  A    H  R             |   /    |   /   |
+P       I                | /      | /     |
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>找规律，会发现下图所示的规律：<br>
+<img src="https://tva4.sinaimg.cn/large/006F8oSegy1gi2ba9bn51j30np0b40tq.jpg" alt="2020-08-24 231536" loading="lazy"><br>
+当<code>n=4</code>时，原始字符串每一个字符的编号总是<code>0,1,2,3,2,1</code>的循环，所以只需要遍历一遍原始字符串，给每一个字符标号就行了。</p>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def convert(self, s: str, numRows: int) -&gt; str:
+        res = [[] for i in range(numRows)]
+        idx = list(range(numRows))+list(range(numRows-2,0,-1))
+        for i,ch in enumerate(s):
+            res[idx[i%len(idx)]].append(ch)
+        return ''.join([''.join(i) for i in res])
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[将图片格式转成EPS格式]]></title>
+        <id>http://chencong.cc/post/jiang-tu-pian-ge-shi-zhuan-cheng-eps-ge-shi/</id>
+        <link href="http://chencong.cc/post/jiang-tu-pian-ge-shi-zhuan-cheng-eps-ge-shi/">
+        </link>
+        <updated>2020-08-16T17:10:01.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="背景">背景</h1>
+<p>在使用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.904999em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord text"><span class="mord textrm sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 对论文进行排版时，经常需要使用EPS格式的图片，但是使用PPT或者Visio绘制的图形无法直接导出成EPS格式的图片，所以需要将<code>png</code>、<code>jpg</code>等格式的图片转换为<code>eps</code>格式的图片。</p>
+<h1 id="方法">方法</h1>
+<p>总结网上的教程，大致分为一下几种方式：</p>
+<ol>
+<li>在线转换</li>
+<li>png&gt;pdf&gt;eps</li>
+<li>使用Python代码实现：</li>
+<li>使用bmeps命令（推荐）</li>
+</ol>
+<h2 id="1在线转换">1.在线转换</h2>
+<p>在线转换推荐使用：http://www.tlhiv.org/rast2vec/，注意上传文件的文件名不能包含中文。另外在线转换有一个缺点就是，转换之后图片上的有些字体会变。</p>
+<h2 id="2pngpdfeps方式">2.png&gt;pdf&gt;eps方式</h2>
+<p>将图片转换为pdf，然后使用Adobe Acrobat将pdf转换成eps图片。过程繁琐，还得下载Adobe Acrobat。所以不推荐</p>
+<h2 id="3使用python代码实现">3.使用Python代码实现</h2>
+<pre><code>from PIL import Image
+fig = Image.open(&quot;fig.png&quot;)
+fig = fig.convert('RGB')#必须转换成'RGB'模式才能保存为eps图片
+fig.save(&quot;fig.eps&quot;)
+fig.close()
+</code></pre>
+<p>这个方法挺不错，但是存在一个致命的问题。当输入的图片是无背景的图片时，输出的eps文件会有问题，与转换之前的图片显示不同。</p>
+<h2 id="4使用bmeps命令推荐">4.使用bmeps命令(推荐)</h2>
+<p>在电脑安装了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>Live之后，在安装目录的<code>\bin\win32</code>目录下会有一个<code>bmeps.exe</code>文件。这个可执行文件并不依赖于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>Live。所以只需有<code>bmeps.exe</code>文件就能使用bmeps命令（末尾有bmeps下载链接）。具体使用方法如下：</p>
+<pre><code>bmeps.exe -c fig.png fig.eps
+</code></pre>
+<p>还可以使用<code>-h</code>查看帮助文档</p>
+<pre><code>bmeps.exe -h
+
+bmeps [options] [ &lt;inputfile&gt; [ &lt;outputfile&gt; ] ]
+      Options
+      -------
+      -p &lt;pslevel&gt;           select one of the following
+         1                   (PS level 1)
+         2                   (PS level 2 = default)
+         3                   (PS level 3)
+      -b                     BoundingBox file only
+      -c                     turns color printing on
+      -g                     turns color printing off (default)
+      -e &lt;encoding&gt;          combine the follogin characters to specifiy
+         8                   ASCII-85-encoding instead of ASCII-Hex
+         r                   runlength encoding
+         f                   flate encoding
+      -t &lt;filetype&gt;          choose one of the following
+         png
+         jpg
+         pnm
+      -d                     draft mode only
+         Draft mode means the program reads only header information
+         from the bitmap file and prints a dummy image.
+      -a &lt;alphaoptions&gt;
+         o                   alpha channel is opacity, not transparency
+         t                   alpha channel is transparency, not opacity
+         l                   alternated transparency trigger level
+         m                   mix foreground- and background color
+         sd,d,d              specify background color i.e. s128,128,255
+         PNG supports transparency channels, having values from
+         0 ... 2^n-1. EPS supports simple yes/no decisions to mask
+         pixels, so the alpha channels value must be mapped to
+         &quot;use pixel&quot; or &quot;mask pixel&quot;. The standard behaviour is
+         to mask only pixels which have no opacity at all.
+         The alternated trigger level uses only pixels having full
+         opacity.
+      -s                     print DSC comments
+      -o                     use showpage operator
+      -u                     undefine /pstr and /inputf, use
+                             separated dictionary
+      -r                     force garbage collection via &quot;1 vmreclaim&quot;
+      -q                     use resolution information from the PNG file's
+                             pHYs chunk (if available).
+</code></pre>
+<p><code>bmeps.exe</code>文件仅有230KB，而且不依赖<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>Live。所以推荐使用这种方法来转换图片。<br>
+最后附上<code>bmeps.exe</code>文件下载链接：</p>
+<pre><code>https://drive.google.com/file/d/13r9yMXnc7VYpzE0Gsj2ZvKuCX2-WoIP8/view
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[求字符串不重复子串的最大长度]]></title>
+        <id>http://chencong.cc/post/qiu-zi-fu-chuan-bu-chong-fu-zi-chuan-de-zui-da-chang-du/</id>
+        <link href="http://chencong.cc/post/qiu-zi-fu-chuan-bu-chong-fu-zi-chuan-de-zui-da-chang-du/">
+        </link>
+        <updated>2020-08-15T15:49:37.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>Given a string, find the length of the longest substring without repeating characters.<br>
+Example：</p>
+<pre><code>Input: &quot;abcabcbb&quot;
+Output: 3 
+Explanation: The answer is &quot;abc&quot;, with the length of 3.
+
+Input: &quot;pwwkew&quot;
+Output: 3
+Explanation: The answer is &quot;wke&quot;, with the length of 3.
+
+Input: &quot;bbbbb&quot;
+Output: 1
+Explanation: The answer is &quot;b&quot;, with the length of 1.
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>对字符串进行一次遍历，每遍历一个字符求一次最大字串长度。</p>
+<ul>
+<li>设置滑动窗口，定义窗口起始位置变量用于保存窗口起始位置，窗口结束位置即为当前遍历字符的位置。</li>
+<li>若当前遍历字符在窗口中，修改窗口起始变量</li>
+<li>若当前遍历字符串不在窗口中，根据窗口大小更新最大字串长度。</li>
+<li>字符串遍历结束，返回最大字串长度<br>
+<img src="https://tvax1.sinaimg.cn/large/006F8oSegy1ghrxa1iusoj30er08ot8t.jpg" alt="2020-08-15 233642" loading="lazy"></li>
+</ul>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def lengthOfLongestSubstring(self, s: str) -&gt; int:
+        # 保存最大字串长度
+        res = 0
+        # 保存窗口起始位置
+        start = 0
+        for idx,ch in enumerate(s):
+            # 判断当前字符是否在窗口内
+            if ch in s[start:idx]:
+                # 若当前字符在窗口内，更新起始位置
+                start = s[start:idx].index(ch) + start + 1
+            else:
+                # 若当前字符不在窗口内，更新最大字串长度
+                res = max(res,idx+1-start)
+        return res
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[链表数字相加问题]]></title>
+        <id>http://chencong.cc/post/lian-biao-shu-zi-xiang-jia-wen-ti/</id>
+        <link href="http://chencong.cc/post/lian-biao-shu-zi-xiang-jia-wen-ti/">
+        </link>
+        <updated>2020-08-08T03:42:08.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p>Example:</p>
+<pre><code>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+Output: 7 -&gt; 0 -&gt; 8
+Explanation: 342 + 465 = 807.
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>使用递归实现，依次取出链表第一个节点相加求和。若其中一个链表为空，另一个链表不为空，则空链表用值为0的节点代替，直至两个链表都为空结束递归。</p>
+<h1 id="python实现">Python实现</h1>
+<pre><code># Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    
+    def __init__(self):
+    	# 保留进位信息
+        self.a = 0
+        
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode:
+
+        if l1 == None and l2 == None:
+            if self.a &gt; 0:
+                return ListNode(self.a)
+            else:
+                return None
+            
+        if l1 == None:
+            l1 = ListNode()
+        if l2 == None:
+            l2 = ListNode()
+
+        res = (l1.val+l2.val+self.a)%10
+        self.a = (l1.val+l2.val+self.a)//10
+        return ListNode(res,self.addTwoNumbers(l1.next,l2.next))   
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[机器人运动范围问题]]></title>
+        <id>http://chencong.cc/post/ji-qi-ren-yun-dong-fan-wei-wen-ti/</id>
+        <link href="http://chencong.cc/post/ji-qi-ren-yun-dong-fan-wei-wen-ti/">
+        </link>
+        <updated>2020-08-05T03:24:17.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>地上有一个m行n列的方格，从坐标 <code>[0,0] </code> 到坐标  <code>[m-1,n-1] </code> 。一个机器人从坐标 <code>[0, 0]</code> 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格  <code>[35, 37] </code> ，因为 <code>3+5+3+7=18 </code>。但它不能进入方格  <code>[35, 38] </code>，因为 <code>3+5+3+8=19 </code>。请问该机器人能够到达多少个格子？</p>
+<h1 id="解题思路">解题思路</h1>
+<figure data-type="image" tabindex="1"><img src="https://tva1.sinaimg.cn/large/006F8oSegy1ghfrcfdfr0j30jp0jvgn8.jpg" alt="110705" loading="lazy"></figure>
+<p>从左上角<code>(0,0)</code>开始，采用广度优先搜索算法：</p>
+<ul>
+<li>判断当前点的右相邻格子能否到达，若能并且该格子不在队列则入队</li>
+<li>判断当前点的下相邻格子能否到达，若能并且该格子不在队列则入队</li>
+<li>出队，循环操作，直到队列为空</li>
+</ul>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution(object):
+    def movingCount(self, m, n, k):
+        &quot;&quot;&quot;
+        :type m: int
+        :type n: int
+        :type k: int
+        :rtype: int
+        &quot;&quot;&quot; 
+        def num_sum(num):
+            s = 0
+            while num:
+                s += num % 10
+                num = num//10
+            return s
+                
+        res = [(0,0)]
+        for i,j in res:
+            if i+1 &lt;= m-1 and num_sum(i+1)+num_sum(j) &lt;= k and (i+1,j) not in res:
+                res.append((i+1,j))
+            if j+1 &lt;= n-1 and num_sum(i)+num_sum(j+1) &lt;= k and (i,j+1) not in res:
+                res.append((i,j+1))
+        return len(res)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[青蛙跳台阶问题]]></title>
+        <id>http://chencong.cc/post/qing-wa-tiao-tai-jie-wen-ti/</id>
+        <link href="http://chencong.cc/post/qing-wa-tiao-tai-jie-wen-ti/">
+        </link>
+        <updated>2020-08-04T04:02:52.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</p>
+<h1 id="思路">思路</h1>
+<p>设<code>f(n)</code>表示青蛙跳上<code>n</code>阶的跳法，那么就有<code>f(0)=1</code>，<code>f(1)=1</code>，<code>f(2)=2</code>。如果青蛙要跳到第<code>3</code>阶，那么有两种方式：</p>
+<ul>
+<li>从第<code>2</code>阶跳<code>1</code>级上第<code>3</code>阶</li>
+<li>从第<code>1</code>阶跳<code>2</code>级上第<code>3</code>阶</li>
+</ul>
+<p>于是有<code>f(3)=f(2)+f(1)</code>，以此类推，青蛙跳到第<code>n</code>阶有两种方式：</p>
+<ul>
+<li>从第<code>n-1</code>阶跳<code>1</code>级上第<code>n</code>阶</li>
+<li>从第<code>n-2</code>阶跳<code>2</code>级上第<code>n</code>阶</li>
+</ul>
+<p>所以，我们可以得出：<code>f(n)=f(n-2)+f(n-1)</code>。于是这个问题的本质就类似于求斐波那契数列。</p>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution(object):
+    def __init__(self):
+        self.f_list = [1,1]
+    def numWays(self, n):
+        if len(self.f_list)&lt;n+1:
+            self.get_f_list(n)
+        return self.f_list[n]
+    def get_f_list(self,n):
+        for i in range(n+1-len(self.f_list)):
+            self.f_list.append(self.f_list[-1]+self.f_list[-2])
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ubuntu关闭和开启图形用户界面]]></title>
+        <id>http://chencong.cc/post/ubuntu-guan-bi-he-kai-qi-tu-xing-yong-hu-jie-mian/</id>
+        <link href="http://chencong.cc/post/ubuntu-guan-bi-he-kai-qi-tu-xing-yong-hu-jie-mian/">
+        </link>
+        <updated>2020-04-07T11:02:20.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="方式一">方式一：</h1>
+<h2 id="关闭图形界面">关闭图形界面</h2>
+<pre><code>sudo systemctl set-default multi-user.target
+sudo reboot
+</code></pre>
+<h2 id="开启图形界面">开启图形界面</h2>
+<pre><code>sudo systemctl set-default graphical.target
+sudo reboot
+</code></pre>
+<h1 id="方式二">方式二：</h1>
+<h2 id="关闭图形界面-2">关闭图形界面</h2>
+<pre><code>sudo service lightdm stop
+</code></pre>
+<h2 id="开启图形界面-2">开启图形界面</h2>
+<pre><code>sudo service lightdm start
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python中sacremoses包的使用]]></title>
+        <id>http://chencong.cc/post/python-zhong-sacremoses-bao-de-shi-yong/</id>
+        <link href="http://chencong.cc/post/python-zhong-sacremoses-bao-de-shi-yong/">
+        </link>
+        <updated>2020-02-25T09:26:39.000Z</updated>
+        <content type="html"><![CDATA[<p>sacremoses 地址：<a href="https://github.com/alvations/sacremoses">https://github.com/alvations/sacremoses</a><br>
+sacremoses使用Python实现了Moses的tokenizer, truecaser以及normalizer功能，使用起来比较方便。</p>
+<h1 id="一-安装">一、安装</h1>
+<p>使用<code>pip install sacremoses</code>进行安装</p>
+<h1 id="二-tokenizer-and-detokenizer">二、Tokenizer and Detokenizer</h1>
+<h2 id="tokenizer">Tokenizer</h2>
+<p>tokenize(）函数</p>
+<pre><code>tokenize(text, aggressive_dash_splits=False, return_str=False, escape=True, protected_patterns=None)
+text：需要进行tokenize的句子，类型str
+aggressive_dash_splits：破折号切分，类型bool，默认False
+return_str：一字符串形式返回，类型bool，默认False
+escape：特殊符号是否转译，类型bool，默认True
+protected_patterns：需要保留的模式，类型list，默认None
+</code></pre>
+<p>tokenizer例子</p>
+<pre><code>import sacremoses as moses
+tokenizer = moses.MosesTokenizer(lang='en')
+text = u&quot;It's a sentence with 'weird-symbols'.&quot;
+result_1 = tokenizer.tokenize(text)
+# ['It', '&amp;apos;s', 'a', 'sentence', 'with', '&amp;apos;', 'weird-symbols', '&amp;apos;', '.']
+result_2 = tokenizer.tokenize(text,return_str=True)
+# It &amp;apos;s a sentence with &amp;apos; weird-symbols &amp;apos; .
+result_3 = tokenizer.tokenize(text,return_str=True,escape=False)
+# It 's a sentence with ' weird-symbols ' .
+result_4 = tokenizer.tokenize(text,aggressive_dash_splits=True,return_str=True,escape=False)
+# It 's a sentence with ' weird @-@ symbols ' .
+result_5 = tokenizer.tokenize(text,aggressive_dash_splits=True,return_str=True,escape=False,protected_patterns=[&quot;It's&quot;])
+# It's a sentence with ' weird @-@ symbols ' .
+print(tokenizer_result)
+</code></pre>
+<p>多数情况下使用的是第四中方式来进行tokenize</p>
+<h2 id="detokenizer">Detokenizer</h2>
+<p>detokenize(）函数</p>
+<pre><code>detokenize(tokens, return_str=True, unescape=True)
+tokens：需要进行detokenize的句子，类型list
+return_str：以字符串形式返回，类型bool，默认True
+unescape：不进行特殊字符转义，类型bool，默认True
+</code></pre>
+<p>detokenize例子</p>
+<pre><code>import sacremoses as moses
+detokenizer = moses.MosesDetokenizer(lang='en')
+tokens = ['It', &quot;'s&quot;, 'a', 'sentence', 'with', &quot;'&quot;, 'weird', '@-@', 'symbols', &quot;'&quot;, '.']
+result = detokenizer.detokenize(tokens)
+# It's a sentence with 'weird-symbols'.
+</code></pre>
+<h1 id="三-truecaser">三、Truecaser</h1>
+<p>对句子进行Truecaser一般分为两个步骤：</p>
+<ol>
+<li>训练truecaser模型(如果已有训练好的truecaser模型，这步可以跳过)</li>
+<li>使用truecaser模型对句子进行Truecase操作</li>
+</ol>
+<h2 id="训练truecaser模型">训练truecaser模型</h2>
+<p>sacremoses.MosesTruecaser类中有三个函数可以用来训练truecaser模型，分别是<code>MosesTruecaser.train()</code>,<code>MosesTruecaser.train_from_file()</code>,<code>MosesTruecaser.train_from_file_object()</code></p>
+<h3 id="mosestruecasertrain">MosesTruecaser.train()</h3>
+<pre><code>MosesTruecaser.train(documents, save_to=None, possibly_use_first_token=False, processes=1, progress_bar=False)
+
+documents：用于训练truecaser模型的文档，类型list(list(str))
+save_to：模型保存的文件，类型str，默认None
+possibly_use_first_token：使用每一句的首个单词(默认情况下会去除首个单词)，类型bool，默认False
+processes：多进程训练，类型bool，默认1
+progress_bar：显示训练进度条，类型bool，默认False
+注：对于多进程训练，我设置进程数大于1反而更慢，不知道什么原因
+
+
+import sacremoses as moses
+turecaser = moses.MosesTruecaser()
+tokenizer = moses.MosesTokenizer(lang='en')
+tokenized_docs = [tokenizer.tokenize(line) for line in open('test_file.txt')]
+turecaser.train(tokenized_docs, save_to='truecasemodel.txt')
+</code></pre>
+<h3 id="mosestruecasertrain_from_file">MosesTruecaser.train_from_file()</h3>
+<pre><code>MosesTruecaser.train_from_file(filename, save_to=None, possibly_use_first_token=False, processes=1, progress_bar=False)
+
+filename：用于训练truecaser模型的文件路径，类型str
+save_to：模型保存的文件，类型str，默认None
+possibly_use_first_token：使用每一句的首个单词(默认情况下会去除首个单词)，类型bool，默认False
+processes：多进程训练，类型bool，默认1
+progress_bar：显示训练进度条，类型bool，默认False
+
+
+import sacremoses as moses
+turecaser = moses.MosesTruecaser()
+turecaser.train_from_file('test_file.txt', save_to='truecasemodel.txt')
+</code></pre>
+<h3 id="mosestruecasertrain_from_file_object">MosesTruecaser.train_from_file_object()</h3>
+<pre><code>MosesTruecaser.train_from_file_object(file_object, save_to=None, possibly_use_first_token=False, processes=1, progress_bar=False)
+
+file_object：用于训练truecaser模型的文件对此，类型file_object
+save_to：模型保存的文件，类型str，默认None
+possibly_use_first_token：使用每一句的首个单词(默认情况下会去除首个单词)，类型bool，默认False
+processes：多进程训练，类型bool，默认1
+progress_bar：显示训练进度条，类型bool，默认False
+
+
+import sacremoses as moses
+turecaser = moses.MosesTruecaser()
+file = open('test_file.txt','r',encoding='utf-8')
+turecaser.train_from_file_object(file, save_to='truecasemodel.txt',)
+file.close()
+</code></pre>
+<p>个人倾向于使用第二种方法训练truecaser模型</p>
+<h2 id="对句子进行truecase操">对句子进行truecase操</h2>
+<pre><code># 初始化MosesTruecaser对象时候加载truecaser模型
+import sacremoses as moses
+turecaser = moses.MosesTruecaser('truecaser_model')
+text = 'Hello World!'
+turecaser.truecase(text)
+# 如果初始化的时候没有加载truecaser模型则MosesTruecaser对象需要训练truecaser模型
+import sacremoses as moses
+turecaser = moses.MosesTruecaser()
+turecaser.train_from_file('test_file.txt')
+text = 'Hello World!'
+turecaser.truecase(text)
+</code></pre>
+<h1 id="四-normalizer">四、Normalizer</h1>
+<p>对符号标准化<code>１２３</code>→<code>123</code></p>
+<pre><code>import sacremoses as moses
+normalizer = moses.MosesPunctNormalizer(lang='en', penn=True, norm_quote_commas=True, norm_numbers=True, pre_replace_unicode_punct=True, post_remove_control_chars=False)
+result = normalizer.normalize('【】“”０,１,２,３,４,５,６,７,８,９')
+# result : []&quot;&quot;0,1,2,3,4,5,6,7,8,9
+</code></pre>
+]]></content>
+    </entry>
+</feed>

@@ -1,0 +1,248 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>将图片格式转成EPS格式 | Chencong</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="http://chencong.cc/favicon.ico?v=1719216418177">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<link rel="stylesheet" href="http://chencong.cc/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="将图片格式转成EPS格式 | Chencong - Atom Feed" href="http://chencong.cc/atom.xml">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="site-nav has-cover">
+      <div class="head">
+  <div class="inner">
+    <a class="site-name" href="http://chencong.cc">
+        <span>Chencong</span>
+    </a>
+    <label class="burger" for="burger"></label>
+    <input id="burger" type="checkbox">
+    <button class="burger">
+      <div>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    <nav class="info_nav">
+      
+        
+          <a href="/">首页</a>
+        
+      
+        
+          <a href="/archives">归档</a>
+        
+      
+        
+          <a href="/tags">标签</a>
+        
+      
+        
+          <a href="/post/about">关于</a>
+        
+      
+    </nav>
+  </div>
+</div>
+    </div>
+    <article role="main" class="hentry has-cover">
+      
+        <div class="entry-cover js-cover" data-src="https://tvax4.sinaimg.cn/large/006F8oSegy1ght5hp6kxaj31tp0wvaa2.jpg" data-width="900" data-height="423" style="background-image:url(https://tvax4.sinaimg.cn/large/006F8oSegy1ght5hp6kxaj31tp0wvaa2.jpg); height: 80vw;">
+          <h1 class="post-title">将图片格式转成EPS格式</h1>
+        </div>
+      
+      <h1 class="entry-title" itemprop="headline">将图片格式转成EPS格式</h1>
+      <div class="entry-meta">
+        <time class="updated" datetime="2020-08-17 01:10:01">2020-08-17</time>
+        <span class="author vcard">
+          4 min read
+        </span>
+      </div>
+      <div class="post-content yue">
+        <h1 id="背景">背景</h1>
+<p>在使用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.904999em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord text"><span class="mord textrm sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 对论文进行排版时，经常需要使用EPS格式的图片，但是使用PPT或者Visio绘制的图形无法直接导出成EPS格式的图片，所以需要将<code>png</code>、<code>jpg</code>等格式的图片转换为<code>eps</code>格式的图片。</p>
+<h1 id="方法">方法</h1>
+<p>总结网上的教程，大致分为一下几种方式：</p>
+<ol>
+<li>在线转换</li>
+<li>png&gt;pdf&gt;eps</li>
+<li>使用Python代码实现：</li>
+<li>使用bmeps命令（推荐）</li>
+</ol>
+<h2 id="1在线转换">1.在线转换</h2>
+<p>在线转换推荐使用：http://www.tlhiv.org/rast2vec/，注意上传文件的文件名不能包含中文。另外在线转换有一个缺点就是，转换之后图片上的有些字体会变。</p>
+<h2 id="2pngpdfeps方式">2.png&gt;pdf&gt;eps方式</h2>
+<p>将图片转换为pdf，然后使用Adobe Acrobat将pdf转换成eps图片。过程繁琐，还得下载Adobe Acrobat。所以不推荐</p>
+<h2 id="3使用python代码实现">3.使用Python代码实现</h2>
+<pre><code>from PIL import Image
+fig = Image.open(&quot;fig.png&quot;)
+fig = fig.convert('RGB')#必须转换成'RGB'模式才能保存为eps图片
+fig.save(&quot;fig.eps&quot;)
+fig.close()
+</code></pre>
+<p>这个方法挺不错，但是存在一个致命的问题。当输入的图片是无背景的图片时，输出的eps文件会有问题，与转换之前的图片显示不同。</p>
+<h2 id="4使用bmeps命令推荐">4.使用bmeps命令(推荐)</h2>
+<p>在电脑安装了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>Live之后，在安装目录的<code>\bin\win32</code>目录下会有一个<code>bmeps.exe</code>文件。这个可执行文件并不依赖于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>Live。所以只需有<code>bmeps.exe</code>文件就能使用bmeps命令（末尾有bmeps下载链接）。具体使用方法如下：</p>
+<pre><code>bmeps.exe -c fig.png fig.eps
+</code></pre>
+<p>还可以使用<code>-h</code>查看帮助文档</p>
+<pre><code>bmeps.exe -h
+
+bmeps [options] [ &lt;inputfile&gt; [ &lt;outputfile&gt; ] ]
+      Options
+      -------
+      -p &lt;pslevel&gt;           select one of the following
+         1                   (PS level 1)
+         2                   (PS level 2 = default)
+         3                   (PS level 3)
+      -b                     BoundingBox file only
+      -c                     turns color printing on
+      -g                     turns color printing off (default)
+      -e &lt;encoding&gt;          combine the follogin characters to specifiy
+         8                   ASCII-85-encoding instead of ASCII-Hex
+         r                   runlength encoding
+         f                   flate encoding
+      -t &lt;filetype&gt;          choose one of the following
+         png
+         jpg
+         pnm
+      -d                     draft mode only
+         Draft mode means the program reads only header information
+         from the bitmap file and prints a dummy image.
+      -a &lt;alphaoptions&gt;
+         o                   alpha channel is opacity, not transparency
+         t                   alpha channel is transparency, not opacity
+         l                   alternated transparency trigger level
+         m                   mix foreground- and background color
+         sd,d,d              specify background color i.e. s128,128,255
+         PNG supports transparency channels, having values from
+         0 ... 2^n-1. EPS supports simple yes/no decisions to mask
+         pixels, so the alpha channels value must be mapped to
+         &quot;use pixel&quot; or &quot;mask pixel&quot;. The standard behaviour is
+         to mask only pixels which have no opacity at all.
+         The alternated trigger level uses only pixels having full
+         opacity.
+      -s                     print DSC comments
+      -o                     use showpage operator
+      -u                     undefine /pstr and /inputf, use
+                             separated dictionary
+      -r                     force garbage collection via &quot;1 vmreclaim&quot;
+      -q                     use resolution information from the PNG file's
+                             pHYs chunk (if available).
+</code></pre>
+<p><code>bmeps.exe</code>文件仅有230KB，而且不依赖<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>Live。所以推荐使用这种方法来转换图片。<br>
+最后附上<code>bmeps.exe</code>文件下载链接：</p>
+<pre><code>https://drive.google.com/file/d/13r9yMXnc7VYpzE0Gsj2ZvKuCX2-WoIP8/view
+</code></pre>
+
+      </div>
+      <div class="entry-block">
+        <div class="entry-tags">
+          
+            <a href="http://chencong.cc/tag/axLjgAjAS/">
+              LaTeX
+            </a>
+          
+        </div>
+      </div>
+    </article>
+    
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>前一篇</h3>
+          <a href="http://chencong.cc/post/zigzag-conversionz-xing-zi-fu-chuan-zhuan-huan/">
+            <strong>ZigZag Conversion（Z型字符串转换）</strong>
+          </a>
+        </div>
+      </section>
+    
+    
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>后一篇</h3>
+          <a href="http://chencong.cc/post/qiu-zi-fu-chuan-bu-chong-fu-zi-chuan-de-zui-da-chang-du/">
+            <strong>求字符串不重复子串的最大长度</strong>
+          </a>
+        </div>
+      </section>
+    
+
+    
+      
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '7e50c345c1a15feb2122',
+    clientSecret: '14a6ca52d1d61eac31abb073ef2d9d8b3b586851',
+    repo: 'Comments',
+    owner: 'chencong-jxnu',
+    admin: ['chencong-jxnu'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+      
+
+      
+    
+
+    <footer class="footer">
+  <div class="main">
+    <a href="http://chencong.cc">
+      <img class="avatar" src="http://chencong.cc/images/avatar.png?v=1719216418177" alt="Chencong">
+    </a>
+    <div class="footer__social">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <p class="footer__sosumi">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </p>
+    <a class="footer-rss" href="http://chencong.cc/atom.xml">RSS</a>
+  </div>
+</footer>
+
+<script src="http://chencong.cc/media/prism.js"></script>
+<script>
+  Prism.highlightAll()
+</script>
+
+  </body>
+</html>

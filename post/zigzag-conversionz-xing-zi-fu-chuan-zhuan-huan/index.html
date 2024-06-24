@@ -1,0 +1,209 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ZigZag Conversion（Z型字符串转换） | Chencong</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="http://chencong.cc/favicon.ico?v=1719216418177">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<link rel="stylesheet" href="http://chencong.cc/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ZigZag Conversion（Z型字符串转换） | Chencong - Atom Feed" href="http://chencong.cc/atom.xml">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="site-nav has-cover">
+      <div class="head">
+  <div class="inner">
+    <a class="site-name" href="http://chencong.cc">
+        <span>Chencong</span>
+    </a>
+    <label class="burger" for="burger"></label>
+    <input id="burger" type="checkbox">
+    <button class="burger">
+      <div>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    <nav class="info_nav">
+      
+        
+          <a href="/">首页</a>
+        
+      
+        
+          <a href="/archives">归档</a>
+        
+      
+        
+          <a href="/tags">标签</a>
+        
+      
+        
+          <a href="/post/about">关于</a>
+        
+      
+    </nav>
+  </div>
+</div>
+    </div>
+    <article role="main" class="hentry has-cover">
+      
+        <div class="entry-cover js-cover" data-src="https://tvax3.sinaimg.cn/large/006F8oSegy1ghidwweoggj31tp0wvmxs.jpg" data-width="900" data-height="423" style="background-image:url(https://tvax3.sinaimg.cn/large/006F8oSegy1ghidwweoggj31tp0wvmxs.jpg); height: 80vw;">
+          <h1 class="post-title">ZigZag Conversion（Z型字符串转换）</h1>
+        </div>
+      
+      <h1 class="entry-title" itemprop="headline">ZigZag Conversion（Z型字符串转换）</h1>
+      <div class="entry-meta">
+        <time class="updated" datetime="2020-08-24 23:47:40">2020-08-24</time>
+        <span class="author vcard">
+          2 min read
+        </span>
+      </div>
+      <div class="post-content yue">
+        <h1 id="问题描述">问题描述</h1>
+<p>The string &quot;PAYPALISHIRING&quot; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+<pre><code>P     A     H     N         |     / |     / |
+A  P  L  S  I  I  G         |   /   |   /   |
+Y     I     R               | /     | /     |
+</code></pre>
+<p>Example 1:</p>
+<pre><code>Input: s = &quot;PAYPALISHIRING&quot;, numRows = 3
+Output: &quot;PAHNAPLSIIGYIR&quot;
+
+P     A     H     N         |     / |     / |
+A  P  L  S  I  I  G         |   /   |   /   |
+Y     I     R               | /     | /     |
+</code></pre>
+<p>Example 2:</p>
+<pre><code>Input: s = &quot;PAYPALISHIRING&quot;, numRows = 4
+Output: &quot;PINALSIGYAHRPI&quot;
+
+P       I       N        |      / |     / |
+A    L  S    I  G        |     /  |    /  |
+Y  A    H  R             |   /    |   /   |
+P       I                | /      | /     |
+</code></pre>
+<h1 id="解题思路">解题思路</h1>
+<p>找规律，会发现下图所示的规律：<br>
+<img src="https://tva4.sinaimg.cn/large/006F8oSegy1gi2ba9bn51j30np0b40tq.jpg" alt="2020-08-24 231536" loading="lazy"><br>
+当<code>n=4</code>时，原始字符串每一个字符的编号总是<code>0,1,2,3,2,1</code>的循环，所以只需要遍历一遍原始字符串，给每一个字符标号就行了。</p>
+<h1 id="python实现">Python实现</h1>
+<pre><code>class Solution:
+    def convert(self, s: str, numRows: int) -&gt; str:
+        res = [[] for i in range(numRows)]
+        idx = list(range(numRows))+list(range(numRows-2,0,-1))
+        for i,ch in enumerate(s):
+            res[idx[i%len(idx)]].append(ch)
+        return ''.join([''.join(i) for i in res])
+</code></pre>
+
+      </div>
+      <div class="entry-block">
+        <div class="entry-tags">
+          
+            <a href="http://chencong.cc/tag/caUKr4og7/">
+              LeetCode
+            </a>
+          
+        </div>
+      </div>
+    </article>
+    
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>前一篇</h3>
+          <a href="http://chencong.cc/post/gua-hao-sheng-cheng-wen-ti/">
+            <strong>括号生成问题</strong>
+          </a>
+        </div>
+      </section>
+    
+    
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>后一篇</h3>
+          <a href="http://chencong.cc/post/jiang-tu-pian-ge-shi-zhuan-cheng-eps-ge-shi/">
+            <strong>将图片格式转成EPS格式</strong>
+          </a>
+        </div>
+      </section>
+    
+
+    
+      
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '7e50c345c1a15feb2122',
+    clientSecret: '14a6ca52d1d61eac31abb073ef2d9d8b3b586851',
+    repo: 'Comments',
+    owner: 'chencong-jxnu',
+    admin: ['chencong-jxnu'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+      
+
+      
+    
+
+    <footer class="footer">
+  <div class="main">
+    <a href="http://chencong.cc">
+      <img class="avatar" src="http://chencong.cc/images/avatar.png?v=1719216418177" alt="Chencong">
+    </a>
+    <div class="footer__social">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <p class="footer__sosumi">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </p>
+    <a class="footer-rss" href="http://chencong.cc/atom.xml">RSS</a>
+  </div>
+</footer>
+
+<script src="http://chencong.cc/media/prism.js"></script>
+<script>
+  Prism.highlightAll()
+</script>
+
+  </body>
+</html>
